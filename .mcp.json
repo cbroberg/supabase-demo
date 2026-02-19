@@ -1,0 +1,204 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "enabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/path/to/project"
+      ],
+      "description": "File operations with configurable access"
+    },
+    "git": {
+      "enabled": true,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ],
+      "description": "Git repository operations"
+    },
+    "github": {
+      "enabled": true,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "GitHub API integration (requires GITHUB_TOKEN env var)"
+    },
+    "memory": {
+      "enabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "description": "Knowledge graph-based persistent memory"
+    },
+    "sequentialThinking": {
+      "enabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequentialthinking"
+      ],
+      "description": "Step-by-step reasoning and problem decomposition"
+    },
+    "fetch": {
+      "enabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ],
+      "description": "Web content fetching and retrieval"
+    },
+    "puppeteer": {
+      "enabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ],
+      "description": "Browser automation for screenshots and dynamic content"
+    },
+    "time": {
+      "enabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-time"
+      ],
+      "description": "Time utilities and timezone conversion"
+    },
+    "postgres": {
+      "enabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres"
+      ],
+      "env": {
+        "DATABASE_URL": "${DATABASE_URL}"
+      },
+      "description": "PostgreSQL database access (requires DATABASE_URL env var)"
+    },
+    "sqlite": {
+      "enabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sqlite"
+      ],
+      "env": {
+        "SQLITE_DB_PATH": "./data/database.db"
+      },
+      "description": "SQLite database access"
+    },
+    "supabase": {
+      "enabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server"
+      ],
+      "env": {
+        "SUPABASE_URL": "${SUPABASE_URL}",
+        "SUPABASE_ACCESS_TOKEN": "${SUPABASE_ACCESS_TOKEN}"
+      },
+      "description": "Supabase PostgreSQL database and authentication (requires SUPABASE_URL and SUPABASE_ACCESS_TOKEN env vars)"
+    }
+  },
+  "suites": {
+    "codebase-analyzer-suite": [
+      "filesystem",
+      "git",
+      "github",
+      "memory"
+    ],
+    "planning-suite": [
+      "memory",
+      "sequentialThinking",
+      "fetch",
+      "github"
+    ],
+    "research-suite": [
+      "fetch",
+      "puppeteer",
+      "memory",
+      "time"
+    ],
+    "architecture-suite": [
+      "sequentialThinking",
+      "memory",
+      "filesystem",
+      "git"
+    ],
+    "api-suite": [
+      "fetch",
+      "puppeteer",
+      "filesystem",
+      "github",
+      "supabase"
+    ],
+    "design-suite": [
+      "fetch",
+      "puppeteer",
+      "filesystem",
+      "memory"
+    ],
+    "database-suite": [
+      "postgres",
+      "sqlite",
+      "supabase",
+      "memory",
+      "filesystem"
+    ],
+    "frontend-suite": [
+      "filesystem",
+      "git",
+      "github",
+      "puppeteer",
+      "fetch"
+    ],
+    "devops-suite": [
+      "git",
+      "github",
+      "filesystem"
+    ],
+    "quality-suite": [
+      "filesystem",
+      "git",
+      "github"
+    ],
+    "review-suite": [
+      "git",
+      "github",
+      "filesystem",
+      "memory"
+    ],
+    "testing-suite": [
+      "filesystem",
+      "git",
+      "puppeteer",
+      "github"
+    ],
+    "security-suite": [
+      "filesystem",
+      "git",
+      "github"
+    ],
+    "docs-suite": [
+      "filesystem",
+      "git",
+      "github",
+      "fetch",
+      "memory"
+    ]
+  }
+}

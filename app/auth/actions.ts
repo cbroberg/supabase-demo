@@ -36,6 +36,23 @@ export async function signup(formData: FormData) {
   redirect("/login?message=Check+your+email+to+confirm+your+account");
 }
 
+export async function signInWithGitHub() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "github",
+    options: {
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:4242"}/auth/callback`,
+    },
+  });
+
+  if (error || !data.url) {
+    redirect(`/login?error=${encodeURIComponent(error?.message ?? "GitHub login failed")}`);
+  }
+
+  redirect(data.url);
+}
+
 export async function logout() {
   const supabase = await createClient();
   await supabase.auth.signOut();
